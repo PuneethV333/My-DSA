@@ -19,7 +19,7 @@ int empty(stack_t *ps){
 int main() {
     stack_t s;
     s.top = 12;
-    for (int i = 0; i < s.top; i++){
+    for (int i = 0; i <= s.top; i++){
         s.item[i] = i;
     }
     int x = empty(&s);
