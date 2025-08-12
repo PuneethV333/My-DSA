@@ -11,8 +11,6 @@ typedef struct link{
 }link_t;
 
 
-
-int main(){
-
-    return 0;
+void init(link_t* ptr_link){
+    ptr_link->head = NULL;
 }
