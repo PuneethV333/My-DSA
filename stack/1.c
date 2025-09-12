@@ -49,6 +49,78 @@ RESEUT_T compute_result(STUDENT_T *s){
 
 
 
+// * never mind
+
+
+typedef struct Stack{
+    int top;
+    int arr[100];
+}stack_t;
+
+void display(stack_t *s){
+    if(s->top == -1){
+        printf("Stack is empty\n");
+    }else{
+        for (int i = 0; i < s->top; i++){
+            printf("%d\n",(s->arr)[i]);
+        }        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// * never mind
 
 
 
@@ -60,5 +132,12 @@ RESEUT_T compute_result(STUDENT_T *s){
 int main(){
     STUDENT_T s = input();
     RESEUT_T r = compute_result(&s);
+    stack_t st;
+    for (int i = 0; i < 19; i++){
+        st.arr[i] = i;
+        (st.top)++;
+    }
+    
+    
     return 0;
 }

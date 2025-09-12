@@ -13,7 +13,7 @@ void display(stack_t *s){
     }else{
         printf("Elements in stacks are : \n");
         for (int i = 0; i <= s->top; i++){
-            printf("%d. %d\n",i+1,s->item[i]);
+            printf("%d. %d\n",i+1,(s->item)[i]);
         }        
     }
 }
