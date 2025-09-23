@@ -55,7 +55,6 @@ void qdisplay(queue_t *ptr){
     printf("%d\n",pres->data);   
 }
 
-
 void init(queue_t *ptr){
     ptr->front = ptr->rear = NULL;
 }

@@ -16,16 +16,21 @@ void init(queue_t* ptr){
     ptr->f = ptr->r = -1;
 }
 
-int qinsert(queue_t *ptr,int data){
-    if (ptr->r = ptr->size -1 ){
-        printf("Queue is full\n");
-        return 0;
+
+int qinsert(queue_t* ptr,int data){
+    if(ptr->r == ptr->size -1){
+        printf("Stack is full\n");
+        return -1;
     }
-    ptr->item[++(ptr->r)] = data;
-    if (ptr->r == -1){
-        ptr->r = 0;
+    if(ptr->r == -1){
+        ptr->r = ptr->f = 0;
+    }else{
+        ptr->r++;
     }
+
+    ptr->item[ptr->r] = data;
     return 1;
+
 }
 
 int qdelete(queue_t* ptr){

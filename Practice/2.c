@@ -138,45 +138,47 @@ void revers_linklist(list_t *ptr)
 
 void insert_pos(list_t *ptr, int data, int pos)
 {
-     if (pos <= 0) {
+    if (pos <= 0) {
         printf("invalid pos\n");
         return;
     }
+
     node_t *temp = malloc(sizeof(node_t));
+    if (temp == NULL) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+
     temp->key = data;
     temp->link = NULL;
-    int cer_pos = 1;
+
+    int cur_pos = 1;
     node_t *pres = ptr->head;
     node_t *prev = NULL;
-    while ((pres != NULL) && (cer_pos < pos))
-    {
+
+    while ((pres != NULL) && (cur_pos < pos)) {
         prev = pres;
         pres = pres->link;
-        cer_pos++;
+        cur_pos++;
     }
-    if (pres != NULL)
-    {
-        if (prev == NULL)
-        {
-            temp->link = pres;
-            ptr->head = temp;
-        }
-        else
-        {
-            temp->link = pres;
-            prev->link = temp;
-        }
+
+    if (prev == NULL) {
+        temp->link = ptr->head;
+        ptr->head = temp;
+        return;
     }
-    else
-    {
-        if (cer_pos == pos)
-        {
-            prev->link = temp;
-        }
-        else
-        {
-            printf("invalid pos\n");
-        }
+
+    if (cur_pos == pos) {
+        temp->link = pres;
+        prev->link = temp;
+    }
+    
+    else if (pres == NULL && cur_pos == pos) {
+        prev->link = temp;
+    }
+    else {
+        printf("invalid pos\n");
+        free(temp);
     }
 }
 
@@ -212,37 +214,40 @@ void delete_node(list_t *ptr, int x)
     }
 }
 
-void delete_pos(list_t *ptr, int pos){
-    node_t *pres = ptr->head;
-    node_t *prev = NULL;
-    int cur_pos = 1;
-    if (ptr->head == NULL)
-    {
+void delete_pos(list_t *ptr, int pos) {
+    if (ptr->head == NULL) {
         printf("List is empty\n");
         return;
     }
-    while ((pres != NULL) && (cur_pos < pos))
-    {
+
+    if (pos <= 0) {
+        printf("Invalid position\n");
+        return;
+    }
+
+    node_t *pres = ptr->head;
+    node_t *prev = NULL;
+    int cur_pos = 1;
+
+    while (pres != NULL && cur_pos < pos) {
         prev = pres;
         pres = pres->link;
         cur_pos++;
     }
-    if (pres != NULL)
-    {
-        if (prev == NULL)
-        {
-            ptr->head = pres->link;
-        }
-        else
-        {
-            prev->link = pres->link;
-        }
-        free(pres);
+
+    if (pres == NULL) {
+        printf("Invalid position\n");
+        return;
     }
-    else
-    {
-        printf("node not found\n");
+
+    if (prev == NULL) { 
+        ptr->head = pres->link;
+    } else {
+        prev->link = pres->link;
     }
+
+    free(pres);
+    pres = NULL; 
 }
 
 void insert_order(list_t* ptr,int data){

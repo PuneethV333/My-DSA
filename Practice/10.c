@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h>
 
 typedef struct node{
 	int key;
@@ -77,4 +78,107 @@ int main(){
 			case 4 : exit(0);
 		}
 	}
+}
+
+int is_opr(char ch){
+	if(ch == '+' ||ch == '/' ||ch == '*' ||ch == '-'){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int postfix_eval(char* postfix){
+	int i = 0;
+	int op1,op2,a,ch,res;
+	stack_t st;
+	init(&st);
+	
+	while (postfix[i] != '\0'){
+		ch = postfix[i];
+		if(is_opr(ch)){
+			op1 = pop(&st);
+			op2 = pop(&st);
+			switch (ch)
+			{
+			case '+':
+				res = op1+op2;
+				break;
+			case '-':
+				res = op2-op1;
+				break;
+			case '*':
+				res = op1*op2;
+				break;
+			case '/':
+				res = op2/op1;
+				break;
+			}
+			push(&st,res);
+		}else{
+			printf("%c = ",ch);
+			scanf("%d",&a);
+			push(&st,a);
+		}
+		i++;
+
+	}
+	
+	return pop(&st);
+}
+
+
+int prefix_eval(char* prefix){
+	int i = strlen(prefix) - 1;
+	int ch,a,res,op1,op2;
+	stack_t st;
+	init(&st);
+	for (i; i >= 0 ; i--){
+		ch = prefix[i];
+
+		if(is_opr(ch)){
+			op1 = pop(&st);
+			op2 = pop(&st);
+			switch (ch){
+			case '+':
+				res = op2+op1;
+				break;
+			case '-':
+				res = op2-op1;
+				break;
+			case '*':
+				res = op2*op1;
+				break;
+			case '/':
+				res = op2/op1;
+				break;
+			}
+			push(&st,res);
+		}else{
+			printf("%c = ",ch);
+			scanf("%d",&a);
+			push(&st,a);
+		}
+	}
+	return pop(&st);
+	
 }
