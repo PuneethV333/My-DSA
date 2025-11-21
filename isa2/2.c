@@ -19,7 +19,7 @@ void init(tree_t *t){
 }
 
 void insert(tree_t* t,int key){
-    node_t *temp = malloc(sizeof(node_t));\
+    node_t *temp = malloc(sizeof(node_t));
     temp->data = key;
     temp->left = NULL;
     temp->right = NULL;
