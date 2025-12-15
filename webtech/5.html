@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>geolocation</title>
+    
+  </head>
+  <body>
+    <button onclick='giolocation()'>click me</button>
+    <button onclick='stop()'>Stop tarck</button>
+    <h1 id="dist"></h1>
+  </body>
+  <script>
+    const h1ref = document.getElementById("dist");
+    var watchid;
+    const giolocation = () => {
+      if(navigator.geolocation){
+        watchid = navigator.geolocation.watchPosition((x)=>{
+          h1ref.innerHTML = `Your current location is ${x.coords.longitude,x.coords.latitude}`
+        },(err)=>{
+          console.log(err);
+        })
+      }else{
+        console.log("cant access location....");
+      }
+    }
+    
+    const stop = () => {
+      if(watchid){
+        navigator.geolocation.clearWatch(watchid);
+        h1ref.innerHTML = "";
+      }
+    }
+    
+  
+    
+  </script>
+</html>
